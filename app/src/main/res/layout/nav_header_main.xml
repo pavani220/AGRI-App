@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/purple_200"
+    android:padding="16dp">
+
+
+    <!-- User Avatar (Optional) -->
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="142dp"
+        android:layout_height="102dp"
+        android:paddingTop="10dp"
+        android:src="@mipmap/ic_launcherr_round" />
+
+    <!-- Username TextView -->
+
+
+    <!-- Email TextView -->
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:text="Username"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="243dp"
+        android:layout_height="55dp"
+        android:paddingTop="4dp"
+        android:text="Email"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp" />
+
+</LinearLayout>

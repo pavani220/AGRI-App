@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/textViewTitleSoil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Soil Details"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Add Button -->
+        <Button
+            android:id="@+id/buttonSoil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Data"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitleSoil"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Update Button -->
+
+        <!-- Name -->
+        <Button
+            android:id="@+id/button2Soil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="4dp"
+            android:text="Update"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitleSoil" />
+
+        <TextView
+            android:id="@+id/textViewNameSoil"
+            android:layout_width="116dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="16dp"
+            android:text="Type of Soil:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttonSoil" />
+
+        <EditText
+            android:id="@+id/editTextTextSoil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter soil type"
+            app:layout_constraintTop_toBottomOf="@id/textViewNameSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Mobile -->
+        <TextView
+            android:id="@+id/textViewMobileSoil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soil Colour:"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/editTextTextSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTextPhoneSoil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter soil colour"
+            app:layout_constraintTop_toBottomOf="@id/textViewMobileSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewEmailSoil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Irrigation Type:"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/editTextPhoneSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTextEmailSoil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Irrigation type"
+            app:layout_constraintTop_toBottomOf="@id/textViewEmailSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Continue similarly for Email, Aadhar, Survey No, Address, etc. -->
+        <!-- Just follow the pattern: TextView -> EditText stacked vertically -->
+
+        <!-- Number of Acres -->
+        <TextView
+            android:id="@+id/textViewAcresSoil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Acres:"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/editTextEmailSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTextNumber3Soil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter number of acres"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/textViewAcresSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewAcressSoil"
+            android:layout_width="104dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="16dp"
+            android:text="Soil Texture:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextNumber3Soil" />
+
+        <EditText
+            android:id="@+id/editTextNumber4Soil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="smooth/sandy/sticky"
+            app:layout_constraintTop_toBottomOf="@id/textViewAcressSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewSurveySoil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soil Moisture:"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/editTextNumber4Soil"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTextNumber5Soil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Survey Number"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/textViewSurveySoil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewAddresssSoil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address:"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/editTextNumber5Soil"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTextNumber6Soil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Address"
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/textViewAddresssSoil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
