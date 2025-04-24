@@ -106,16 +106,62 @@ public class FarmerDetails extends AppCompatActivity {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Farmer farmer = snap.getValue(Farmer.class);
 
-                    // Create a new TextView for each farmer to show the details
-                    TextView tv = new TextView(FarmerDetails.this);
-                    tv.setText(farmer.name + " | " + farmer.mobile + " | " + farmer.acres + " acres");
-                    tv.setPadding(8, 8, 8, 8);
-                    tv.setTextSize(16);
-                    farmerListLayout.addView(tv);
+                    // Create a new LinearLayout for each farmer to display their details
+                    LinearLayout farmerDetailsLayout = new LinearLayout(FarmerDetails.this);
+                    farmerDetailsLayout.setOrientation(LinearLayout.VERTICAL);
+                    farmerDetailsLayout.setPadding(16, 16, 16, 16);
 
-                    // Add an OnClickListener to each farmer item for update functionality
-                    tv.setOnClickListener(v -> {
-                        // When a farmer item is clicked, pre-fill the form with their data for editing
+                    // Create TextViews for each field and add to farmerDetailsLayout
+                    TextView nameTextView = new TextView(FarmerDetails.this);
+                    nameTextView.setText("Name: " + farmer.name);
+                    nameTextView.setTextSize(16);
+                    nameTextView.setPadding(0, 4, 0, 4);
+
+                    TextView mobileTextView = new TextView(FarmerDetails.this);
+                    mobileTextView.setText("Phone Number: " + farmer.mobile);
+                    mobileTextView.setTextSize(16);
+                    mobileTextView.setPadding(0, 4, 0, 4);
+
+                    TextView acresTextView = new TextView(FarmerDetails.this);
+                    acresTextView.setText("Acres: " + farmer.acres + " acres");
+                    acresTextView.setTextSize(16);
+                    acresTextView.setPadding(0, 4, 0, 4);
+
+                    TextView emailTextView = new TextView(FarmerDetails.this);
+                    emailTextView.setText("Email: " + farmer.email);
+                    emailTextView.setTextSize(16);
+                    emailTextView.setPadding(0, 4, 0, 4);
+
+                    TextView aadharTextView = new TextView(FarmerDetails.this);
+                    aadharTextView.setText("Aadhar Number: " + farmer.aadhar);
+                    aadharTextView.setTextSize(16);
+                    aadharTextView.setPadding(0, 4, 0, 4);
+
+                    TextView surveyTextView = new TextView(FarmerDetails.this);
+                    surveyTextView.setText("Survey Number: " + farmer.surveyNumber);
+                    surveyTextView.setTextSize(16);
+                    surveyTextView.setPadding(0, 4, 0, 4);
+
+                    TextView addressTextView = new TextView(FarmerDetails.this);
+                    addressTextView.setText("Address: " + farmer.address);
+                    addressTextView.setTextSize(16);
+                    addressTextView.setPadding(0, 4, 0, 4);
+
+                    // Add each TextView to the farmerDetailsLayout
+                    farmerDetailsLayout.addView(nameTextView);
+                    farmerDetailsLayout.addView(mobileTextView);
+                    farmerDetailsLayout.addView(acresTextView);
+                    farmerDetailsLayout.addView(emailTextView);
+                    farmerDetailsLayout.addView(aadharTextView);
+                    farmerDetailsLayout.addView(surveyTextView);
+                    farmerDetailsLayout.addView(addressTextView);
+
+                    // Add "Edit" button next to each farmer's details
+                    Button editButton = new Button(FarmerDetails.this);
+                    editButton.setText("Edit");
+                    editButton.setOnClickListener(v -> {
+                        // When "Edit" button is clicked, show the form with pre-filled data
+                        currentFarmerKey = snap.getKey();
                         nameEdit.setText(farmer.name);
                         mobileEdit.setText(farmer.mobile);
                         emailEdit.setText(farmer.email);
@@ -124,19 +170,23 @@ public class FarmerDetails extends AppCompatActivity {
                         surveyEdit.setText(farmer.surveyNumber);
                         addressEdit.setText(farmer.address);
 
-                        // Show the form
-                        formLayout.setVisibility(View.VISIBLE);
-                        addButton.setVisibility(View.GONE);  // Hide the "Add Data" button while updating
-
-                        // Store the current farmer's key for update
-                        currentFarmerKey = snap.getKey();
+                        formLayout.setVisibility(View.VISIBLE);  // Show the form
+                        titleTextView.setVisibility(View.GONE);  // Hide the title
+                        addButton.setVisibility(View.GONE);  // Hide "Add Data" button
+                        updateButton.setVisibility(View.VISIBLE);  // Show the "Update" button
                     });
+
+                    // Add each field and the edit button to the farmerDetailsLayout
+                    farmerDetailsLayout.addView(editButton);
+
+                    // Add the whole farmerDetailsLayout to the farmerListLayout
+                    farmerListLayout.addView(farmerDetailsLayout);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(FarmerDetails.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FarmerDetails.this, "Failed to load data.", Toast.LENGTH_SHORT).show();
             }
         });
     }

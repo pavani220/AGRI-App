@@ -1,5 +1,4 @@
 package farm.smart;
-
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import farm.smart.R;
