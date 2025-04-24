@@ -66,11 +66,15 @@ public class FarmerDetails extends AppCompatActivity {
             String survey = surveyEdit.getText().toString();
             String address = addressEdit.getText().toString();
 
+            // Get the userId from the session
+            SessionManager sessionManager = new SessionManager(FarmerDetails.this);
+            String userId = sessionManager.getUserId();
+
             // Check if we are updating or adding
             if (currentFarmerKey.isEmpty()) {
                 // Adding new data
                 String id = farmerRef.push().getKey();  // Generate a new ID for the new farmer
-                Farmer farmer = new Farmer(name, mobile, email, acres, aadhar, survey, address);
+                Farmer farmer = new Farmer(name, mobile, email, acres, aadhar, survey, address, userId); // Pass userId here
                 farmerRef.child(id).setValue(farmer).addOnSuccessListener(unused -> {
                     Toast.makeText(FarmerDetails.this, "Data Added", Toast.LENGTH_SHORT).show();
                     loadFarmers();  // Reload the farmers' list
@@ -81,7 +85,7 @@ public class FarmerDetails extends AppCompatActivity {
                 });
             } else {
                 // Update existing data
-                Farmer updatedFarmer = new Farmer(name, mobile, email, acres, aadhar, survey, address);
+                Farmer updatedFarmer = new Farmer(name, mobile, email, acres, aadhar, survey, address, userId); // Pass userId here
                 farmerRef.child(currentFarmerKey).setValue(updatedFarmer).addOnSuccessListener(unused -> {
                     Toast.makeText(FarmerDetails.this, "Data Updated", Toast.LENGTH_SHORT).show();
                     loadFarmers();  // Reload the farmers' list
@@ -99,95 +103,102 @@ public class FarmerDetails extends AppCompatActivity {
 
     // Method to load farmers from Firebase and update the list on the screen
     public void loadFarmers() {
+        // Get the current user ID from the session
+        SessionManager sessionManager = new SessionManager(FarmerDetails.this);
+        String userId = sessionManager.getUserId();
+
         farmerListLayout.removeAllViews();  // Remove previous data if any
-        farmerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    Farmer farmer = snap.getValue(Farmer.class);
 
-                    // Create a new LinearLayout for each farmer to display their details
-                    LinearLayout farmerDetailsLayout = new LinearLayout(FarmerDetails.this);
-                    farmerDetailsLayout.setOrientation(LinearLayout.VERTICAL);
-                    farmerDetailsLayout.setPadding(16, 16, 16, 16);
+        // Query Firebase to load only the data specific to the logged-in user
+        farmerRef.orderByChild("userId").equalTo(userId)  // Filter by userId
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot snap : snapshot.getChildren()) {
+                            Farmer farmer = snap.getValue(Farmer.class);
 
-                    // Create TextViews for each field and add to farmerDetailsLayout
-                    TextView nameTextView = new TextView(FarmerDetails.this);
-                    nameTextView.setText("Name: " + farmer.name);
-                    nameTextView.setTextSize(16);
-                    nameTextView.setPadding(0, 4, 0, 4);
+                            // Create a new LinearLayout for each farmer to display their details
+                            LinearLayout farmerDetailsLayout = new LinearLayout(FarmerDetails.this);
+                            farmerDetailsLayout.setOrientation(LinearLayout.VERTICAL);
+                            farmerDetailsLayout.setPadding(16, 16, 16, 16);
 
-                    TextView mobileTextView = new TextView(FarmerDetails.this);
-                    mobileTextView.setText("Phone Number: " + farmer.mobile);
-                    mobileTextView.setTextSize(16);
-                    mobileTextView.setPadding(0, 4, 0, 4);
+                            // Create TextViews for each field and add to farmerDetailsLayout
+                            TextView nameTextView = new TextView(FarmerDetails.this);
+                            nameTextView.setText("Name: " + farmer.name);
+                            nameTextView.setTextSize(16);
+                            nameTextView.setPadding(0, 4, 0, 4);
 
-                    TextView acresTextView = new TextView(FarmerDetails.this);
-                    acresTextView.setText("Acres: " + farmer.acres + " acres");
-                    acresTextView.setTextSize(16);
-                    acresTextView.setPadding(0, 4, 0, 4);
+                            TextView mobileTextView = new TextView(FarmerDetails.this);
+                            mobileTextView.setText("Phone Number: " + farmer.mobile);
+                            mobileTextView.setTextSize(16);
+                            mobileTextView.setPadding(0, 4, 0, 4);
 
-                    TextView emailTextView = new TextView(FarmerDetails.this);
-                    emailTextView.setText("Email: " + farmer.email);
-                    emailTextView.setTextSize(16);
-                    emailTextView.setPadding(0, 4, 0, 4);
+                            TextView acresTextView = new TextView(FarmerDetails.this);
+                            acresTextView.setText("Acres: " + farmer.acres + " acres");
+                            acresTextView.setTextSize(16);
+                            acresTextView.setPadding(0, 4, 0, 4);
 
-                    TextView aadharTextView = new TextView(FarmerDetails.this);
-                    aadharTextView.setText("Aadhar Number: " + farmer.aadhar);
-                    aadharTextView.setTextSize(16);
-                    aadharTextView.setPadding(0, 4, 0, 4);
+                            TextView emailTextView = new TextView(FarmerDetails.this);
+                            emailTextView.setText("Email: " + farmer.email);
+                            emailTextView.setTextSize(16);
+                            emailTextView.setPadding(0, 4, 0, 4);
 
-                    TextView surveyTextView = new TextView(FarmerDetails.this);
-                    surveyTextView.setText("Survey Number: " + farmer.surveyNumber);
-                    surveyTextView.setTextSize(16);
-                    surveyTextView.setPadding(0, 4, 0, 4);
+                            TextView aadharTextView = new TextView(FarmerDetails.this);
+                            aadharTextView.setText("Aadhar Number: " + farmer.aadhar);
+                            aadharTextView.setTextSize(16);
+                            aadharTextView.setPadding(0, 4, 0, 4);
 
-                    TextView addressTextView = new TextView(FarmerDetails.this);
-                    addressTextView.setText("Address: " + farmer.address);
-                    addressTextView.setTextSize(16);
-                    addressTextView.setPadding(0, 4, 0, 4);
+                            TextView surveyTextView = new TextView(FarmerDetails.this);
+                            surveyTextView.setText("Survey Number: " + farmer.surveyNumber);
+                            surveyTextView.setTextSize(16);
+                            surveyTextView.setPadding(0, 4, 0, 4);
 
-                    // Add each TextView to the farmerDetailsLayout
-                    farmerDetailsLayout.addView(nameTextView);
-                    farmerDetailsLayout.addView(mobileTextView);
-                    farmerDetailsLayout.addView(acresTextView);
-                    farmerDetailsLayout.addView(emailTextView);
-                    farmerDetailsLayout.addView(aadharTextView);
-                    farmerDetailsLayout.addView(surveyTextView);
-                    farmerDetailsLayout.addView(addressTextView);
+                            TextView addressTextView = new TextView(FarmerDetails.this);
+                            addressTextView.setText("Address: " + farmer.address);
+                            addressTextView.setTextSize(16);
+                            addressTextView.setPadding(0, 4, 0, 4);
 
-                    // Add "Edit" button next to each farmer's details
-                    Button editButton = new Button(FarmerDetails.this);
-                    editButton.setText("Edit");
-                    editButton.setOnClickListener(v -> {
-                        // When "Edit" button is clicked, show the form with pre-filled data
-                        currentFarmerKey = snap.getKey();
-                        nameEdit.setText(farmer.name);
-                        mobileEdit.setText(farmer.mobile);
-                        emailEdit.setText(farmer.email);
-                        acresEdit.setText(String.valueOf(farmer.acres));
-                        aadharEdit.setText(farmer.aadhar);
-                        surveyEdit.setText(farmer.surveyNumber);
-                        addressEdit.setText(farmer.address);
+                            // Add each TextView to the farmerDetailsLayout
+                            farmerDetailsLayout.addView(nameTextView);
+                            farmerDetailsLayout.addView(mobileTextView);
+                            farmerDetailsLayout.addView(acresTextView);
+                            farmerDetailsLayout.addView(emailTextView);
+                            farmerDetailsLayout.addView(aadharTextView);
+                            farmerDetailsLayout.addView(surveyTextView);
+                            farmerDetailsLayout.addView(addressTextView);
 
-                        formLayout.setVisibility(View.VISIBLE);  // Show the form
-                        titleTextView.setVisibility(View.GONE);  // Hide the title
-                        addButton.setVisibility(View.GONE);  // Hide "Add Data" button
-                        updateButton.setVisibility(View.VISIBLE);  // Show the "Update" button
-                    });
+                            // Add "Edit" button next to each farmer's details
+                            Button editButton = new Button(FarmerDetails.this);
+                            editButton.setText("Edit");
+                            editButton.setOnClickListener(v -> {
+                                // When "Edit" button is clicked, show the form with pre-filled data
+                                currentFarmerKey = snap.getKey();
+                                nameEdit.setText(farmer.name);
+                                mobileEdit.setText(farmer.mobile);
+                                emailEdit.setText(farmer.email);
+                                acresEdit.setText(String.valueOf(farmer.acres));
+                                aadharEdit.setText(farmer.aadhar);
+                                surveyEdit.setText(farmer.surveyNumber);
+                                addressEdit.setText(farmer.address);
 
-                    // Add each field and the edit button to the farmerDetailsLayout
-                    farmerDetailsLayout.addView(editButton);
+                                formLayout.setVisibility(View.VISIBLE);  // Show the form
+                                titleTextView.setVisibility(View.GONE);  // Hide the title
+                                addButton.setVisibility(View.GONE);  // Hide "Add Data" button
+                                updateButton.setVisibility(View.VISIBLE);  // Show the "Update" button
+                            });
 
-                    // Add the whole farmerDetailsLayout to the farmerListLayout
-                    farmerListLayout.addView(farmerDetailsLayout);
-                }
-            }
+                            // Add each field and the edit button to the farmerDetailsLayout
+                            farmerDetailsLayout.addView(editButton);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(FarmerDetails.this, "Failed to load data.", Toast.LENGTH_SHORT).show();
-            }
-        });
+                            // Add the whole farmerDetailsLayout to the farmerListLayout
+                            farmerListLayout.addView(farmerDetailsLayout);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(FarmerDetails.this, "Failed to load data.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
