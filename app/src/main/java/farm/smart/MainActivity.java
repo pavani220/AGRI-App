@@ -106,12 +106,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+
 
 //Handle call permissions
     @Override
@@ -128,22 +123,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.nav_logout) {
-            SessionManager sessionManager = new SessionManager(MainActivity.this);
-            sessionManager.logout();  // Clear session data
-
-            // Redirect to login activity
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
