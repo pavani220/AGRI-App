@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class WelcomeActivity extends AppCompatActivity {
 
     private static final int SPLASH_TIME_OUT = 5000;
@@ -15,7 +14,6 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
 
         // Auto navigate after delay
         new Handler().postDelayed(this::navigateToNextScreen, SPLASH_TIME_OUT);

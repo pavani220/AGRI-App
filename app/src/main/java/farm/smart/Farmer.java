@@ -24,8 +24,9 @@ public class Farmer {
         this.address = address;
         this.userId = userId;
     }
-
+//to get the getter and setter for the data to get into database connected to firebase.
     // Getters and setters
+
     public String getUserId() {
         return userId;
     }

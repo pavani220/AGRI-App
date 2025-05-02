@@ -1,5 +1,4 @@
 package farm.smart;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,10 +17,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-
 import farm.smart.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -106,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
 //Handle call permissions
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -122,8 +117,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 
     @Override
     public boolean onSupportNavigateUp() {

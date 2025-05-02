@@ -1,15 +1,12 @@
 package farm.smart.ui.gallery;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import farm.smart.databinding.FragmentGalleryBinding;
 
 public class GalleryFragment extends Fragment {
@@ -28,6 +25,10 @@ public class GalleryFragment extends Fragment {
         galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
+
+    //private FragmentGalleryBinding binding;
+    // GalleryViewModel galleryViewModel=new ViewModelProvider(this).get(GalleryViewModel.class);
+    //binding=FragmentGalleryViewModel().inflate(inflater,container,false);
 
     @Override
     public void onDestroyView() {

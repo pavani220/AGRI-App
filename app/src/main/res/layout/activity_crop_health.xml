@@ -1,6 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Title TextView with more top margin -->
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Crop Health Details"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Add Data Button to add the new data in the form-->
+        <Button
+            android:id="@+id/buttonAddCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Update Button to update the crop health information-->
+        <Button
+            android:id="@+id/buttonUpdateCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="144dp" />
+
+        <!-- Form Section which is hidden by default -->
+        <LinearLayout
+            android:id="@+id/formLayoutCropHealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
+
+            <!-- Leaf Color Field -->
+            <TextView
+                android:id="@+id/textViewLeafColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leaf Color:"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextLeafColor"
+                android:layout_height="wrap_content"
+                android:hint="Enter leaf color"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="yes" />
+
+            <!-- Leaf Size and Shape -->
+            <TextView
+                android:id="@+id/textViewLeafSizeShape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leaf Size and Shape:"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextLeafSizeShape"
+                android:layout_height="wrap_content"
+                android:hint="Enter leaf size and shape"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="yes" />
+
+            <!-- Pest and Disease Inspection -->
+            <TextView
+                android:id="@+id/textViewPestDiseaseInspection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pest and Disease Inspection:"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextPestDiseaseInspection"
+                android:layout_height="wrap_content"
+                android:hint="Enter pest and disease inspection notes"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="yes" />
+
+            <!-- Root Health -->
+            <TextView
+                android:id="@+id/textViewRootHealth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Root Health:"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextRootHealth"
+                android:layout_height="wrap_content"
+                android:hint="Enter root health details"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="yes" />
+
+            <!-- Stem Condition -->
+            <TextView
+                android:id="@+id/textViewStemCondition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stem Condition:"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextStemCondition"
+                android:layout_height="wrap_content"
+                android:hint="Enter stem condition details"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="yes" />
+
+            <!-- Flower and Fruit Development -->
+            <TextView
+                android:id="@+id/textViewFlowerFruitDevelopment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flower and Fruit Development:"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextFlowerFruitDevelopment"
+                android:layout_height="wrap_content"
+                android:hint="Enter flower and fruit development status"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="yes" />
+
+            <!-- Plant Height and Growth Stage -->
+            <TextView
+                android:id="@+id/textViewPlantHeightGrowthStage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plant Height and Growth Stage:"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextPlantHeightGrowthStage"
+                android:layout_height="wrap_content"
+                android:hint="Enter plant height and growth stage"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="yes" />
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/buttonSubmitCropHealth"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+
+        <!-- Crops List Layout with more top margin for better spacing -->
+        <LinearLayout
+            android:id="@+id/cropListLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="140dp"
+            app:layout_constraintTop_toBottomOf="@id/formLayoutCropHealth" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -40,7 +40,7 @@
         <!-- 🌱 Home Page Related Activities (add these) -->
         <activity android:name=".FarmerDetails" android:exported="false" />
         <activity android:name=".SoilHealth" android:exported="false" />
-        <activity android:name=".CropHealth" android:exported="false" />
+        <activity android:name=".CropDetails" android:exported="false" />
         <activity android:name=".SoilTesting" android:exported="false" />
         <activity android:name=".Spraying" android:exported="false" />
         <activity android:name=".AgriInput" android:exported="false" />

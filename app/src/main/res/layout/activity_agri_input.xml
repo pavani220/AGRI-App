@@ -1,6 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+        <!-- Title -->
+        <!-- Add Input Button -->
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="550dp"
+            android:layout_height="50dp"
+            android:text="Agri Inputs"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Input"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Update Button -->
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="144dp"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Form Layout -->
+        <LinearLayout
+            android:id="@+id/formLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Input Name:" />
+
+            <EditText
+                android:id="@+id/editInputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter input name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company Name:" />
+
+            <EditText
+                android:id="@+id/editCompanyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter company name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Input Type:" />
+
+            <EditText
+                android:id="@+id/editInputType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Organic / Semi / Non Organic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dosage:" />
+
+            <EditText
+                android:id="@+id/editDosage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter dosage (e.g., 20ml)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Usage Per Month:" />
+
+            <EditText
+                android:id="@+id/editUsagePerMonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Times used per month" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Before Usage:" />
+
+            <EditText
+                android:id="@+id/editBeforeUsage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="State before usage" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="After Usage:" />
+
+            <EditText
+                android:id="@+id/editAfterUsage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="State after usage" />
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+        <!-- List Layout -->
+        <LinearLayout
+            android:id="@+id/agriListLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@id/formLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

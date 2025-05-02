@@ -16,7 +16,7 @@ import farm.smart.R;
 import farm.smart.databinding.FragmentHomeBinding;
 import farm.smart.FarmerDetails;
 import farm.smart.SoilHealth;
-import farm.smart.CropHealth;
+import farm.smart.CropDetails;
 import farm.smart.AgriInput;
 import farm.smart.Spraying;
 import farm.smart.SoilTesting;
@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
                 intent = new Intent(getActivity(), SoilHealth.class);
                 break;
             case "crophealth":
-                intent = new Intent(getActivity(), CropHealth.class);
+                intent = new Intent(getActivity(), CropDetails.class);
                 break;
             case "soiltest":
                 intent =new Intent(getActivity(), SoilTesting.class);

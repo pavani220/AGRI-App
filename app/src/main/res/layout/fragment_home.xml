@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.40" />
 
-        <!-- Farmer Text -->
+        <!-- Farmer Text for the Imageview -->
 
         <ImageView
             android:id="@+id/imageView2"

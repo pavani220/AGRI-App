@@ -14,13 +14,16 @@ public class FarmerDetails extends AppCompatActivity {
 
     // Views
     EditText nameEdit, mobileEdit, emailEdit, acresEdit, aadharEdit, surveyEdit, addressEdit;
+
     LinearLayout farmerListLayout;
+
     LinearLayout formLayout;  // To hold the form
 
     Button addButton, updateButton, submitButton;  // Buttons
     TextView titleTextView;  // Title TextView
 
-    String currentFarmerKey = "";  // To hold the current farmer key (for update)
+
+    String currentFarmerKey = "";  // To hold the current farmer key
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +43,13 @@ public class FarmerDetails extends AppCompatActivity {
         addressEdit = findViewById(R.id.editTextNumber6);
 
         farmerListLayout = findViewById(R.id.farmerListLayout);
-        formLayout = findViewById(R.id.formLayout);  // Initialize the form layout
-        formLayout.setVisibility(View.GONE);  // Hide the form by default
+        formLayout = findViewById(R.id.formLayout);  // Initialize the form layout when add button is clicked
+        formLayout.setVisibility(View.GONE);  // Hide the form by default to avoid the collide
 
         addButton = findViewById(R.id.button);  // Button to show the form and add data
         updateButton = findViewById(R.id.button2);  // Button to update data
-        submitButton = findViewById(R.id.buttonSubmit);  // Submit Button
-        titleTextView = findViewById(R.id.textViewTitle);  // Reference to the Title TextView
+        submitButton = findViewById(R.id.buttonSubmit);  // Submit Button to submit the form data and to reflect below the form and in the page
+        titleTextView = findViewById(R.id.textViewTitle);  // Reference to the Title TextView to store and display the data which is stored
 
         // Show the form when "Add Data" is clicked
         addButton.setOnClickListener(v -> {
@@ -171,6 +174,7 @@ public class FarmerDetails extends AppCompatActivity {
                             Button editButton = new Button(FarmerDetails.this);
                             editButton.setText("Edit");
                             editButton.setOnClickListener(v -> {
+
                                 // When "Edit" button is clicked, show the form with pre-filled data
                                 currentFarmerKey = snap.getKey();
                                 nameEdit.setText(farmer.name);
@@ -180,11 +184,10 @@ public class FarmerDetails extends AppCompatActivity {
                                 aadharEdit.setText(farmer.aadhar);
                                 surveyEdit.setText(farmer.surveyNumber);
                                 addressEdit.setText(farmer.address);
-
-                                formLayout.setVisibility(View.VISIBLE);  // Show the form
-                                titleTextView.setVisibility(View.GONE);  // Hide the title
-                                addButton.setVisibility(View.GONE);  // Hide "Add Data" button
-                                updateButton.setVisibility(View.VISIBLE);  // Show the "Update" button
+                                formLayout.setVisibility(View.VISIBLE); //show the form
+                                titleTextView.setVisibility(View.GONE);  // hide the title
+                                addButton.setVisibility(View.GONE);  // Hide the button named add data to add the data and to open the form
+                                updateButton.setVisibility(View.VISIBLE);  // Show the "Update" button to find the old form to edit and update the form
                             });
 
                             // Add each field and the edit button to the farmerDetailsLayout

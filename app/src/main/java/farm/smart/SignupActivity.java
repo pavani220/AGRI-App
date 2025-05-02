@@ -105,8 +105,15 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(SignupActivity.this,
                                     "Signup failed: " + task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
+
                         }
                     });
         });
     }
 }
+
+//Toast.makeText(signupActivity.this,+task.getexception().getMessage(),Toast.length_long).show())
+//db error.Toast.addonSuccessListener(Length_Short).show();
+//SignUp page for admin
+//Toast.makeText
+

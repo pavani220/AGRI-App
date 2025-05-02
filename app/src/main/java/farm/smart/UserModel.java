@@ -1,7 +1,6 @@
 package farm.smart;
 
 public class UserModel {
-
     private String userId;
     private String username;
     private String email;
