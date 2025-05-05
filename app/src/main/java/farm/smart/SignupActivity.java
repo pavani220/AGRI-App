@@ -84,15 +84,14 @@ public class SignupActivity extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT).show();
                                         Log.d("SignupActivity", "User created: " + userId);
 
-                                        // Save the session
+                                        // Save session
                                         SessionManager sessionManager = new SessionManager(SignupActivity.this);
                                         sessionManager.setLogin(true, userId, enteredUsername, enteredEmail);
 
-                                        // Redirect to login or MainActivity (in case of auto-login)
-                                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
-
+                                        // ✅ Redirect to QR code display activity instead of MainActivity
+                                        Intent qrIntent = new Intent(SignupActivity.this, QrCodeDisplayActivity.class);
+                                        qrIntent.putExtra("USER_ID", userId);
+                                        startActivity(qrIntent);
                                         finish();
                                     })
                                     .addOnFailureListener(e -> {
@@ -105,15 +104,8 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(SignupActivity.this,
                                     "Signup failed: " + task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
-
                         }
                     });
         });
     }
 }
-
-//Toast.makeText(signupActivity.this,+task.getexception().getMessage(),Toast.length_long).show())
-//db error.Toast.addonSuccessListener(Length_Short).show();
-//SignUp page for admin
-//Toast.makeText
-
